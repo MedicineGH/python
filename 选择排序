@@ -35,3 +35,52 @@ for i in range(length):
         count_swap += 1
 print(nums,count_swap,counter)
 
+改进实现
+　　如果一轮比较后，极大值、极小值的值相等，说明比较的序列元素全部相等。
+   一下代码会交换2次，最小值两个1交换是没必要的，所以，增加一个判断。
+import random
+
+m_list = [
+    [i for i in range(1,10)],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [9, 8, 7, 6, 5, 4, 3, 2, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1]
+]
+
+random.shuffle(m_list[0])
+nums = m_list[3]
+length = len(nums)
+print(nums)
+
+count_swap = 0
+count_iter = 0
+# 二元选择排序
+for i in range(length // 2):
+    maxindex = i
+    minindex = -i - 1
+    minorigin = minindex
+
+    for j in range(i + 1, length - i):  # 每次左右都要少比较一个
+        count_iter += 1
+        if nums[maxindex] > nums[j]:
+            maxindex = j
+        if nums[minindex] < nums[-j - 1]:
+            minindex = -j - 1
+
+    # print(maxindex,minindex)
+    if nums[maxindex] == nums[minindex]: #元素相同
+        break
+        
+    if i != maxindex:
+        nums[i],nums[maxindex] = nums[maxindex],nums[i]
+        count_swap += 1
+        # 如果最小值被交换过，要更新索引
+        if i == minindex or i == length + minindex: #由于使用了负索引
+            minindex = maxindex
+
+    #最小值索引不同，但值相同就没有必要交换了
+    if minorigin != minindex and nums[minorigin] != nums[minindex]:
+        nums[minorigin],nums[minindex] = nums[minindex],nums[minorigin]
+        count_swap += 1
+
+print(nums, count_swap, count_iter)
