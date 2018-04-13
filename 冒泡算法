@@ -1,0 +1,33 @@
+冒泡算法
+  属于交换排序
+  两两比较，交换位置，如同水泡往上冒。
+  结果分为升序和降序排列
+import random
+
+num_list = [[i for i in range(1,10)],[j for j in range(1,10)]]
+random.shuffle(num_list[1])
+nums = num_list[1]
+print(nums)
+
+length = len(nums)
+count = 0
+count_swap = 0
+
+for i in range(length):
+    flag = False
+    for j in range(length-i-1): #减i是每次大数固定时，不在进行比较，减少内层循环数，-1防止J超界
+        count += 1
+        if nums[j] > nums[j+1]:
+            nums[j],nums[j+1] = nums[j+1],nums[j]
+            count_swap += 1
+            flag = True
+    if not flag:
+        break
+print(nums,count_swap,count)
+
+总结：
+  冒泡法需要数据一轮轮比较
+  可以设定一个标记判断此轮是否有数据交换发生，如果没有发生交换，可以结束排序，如果发生交换，继续下一轮排序。
+  最差的排序情况是，初始顺序与目标顺序完全相反，遍历次数1...n-1之和n(n-1)/2
+  最好的排序情况是，初始顺序与目标顺序完全相同，遍历次数n-1
+  时间复杂度O(n2)
