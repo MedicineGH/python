@@ -4,4 +4,6 @@
 ansible
 
 
+用户访问节点列表由Web像Master请求，Agent都注册上来了的注册信息都在Master维护着，由Master返回给Web用户就显示节点列表了。
 
+　　任务走向，任务脚本写好之后由Web把数据传给Master，但Master可以有个任务调度器由调度器调度，也可以指派某个节点执行任务。
