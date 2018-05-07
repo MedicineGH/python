@@ -18,7 +18,7 @@ Agent设计：
 　　但agent替你执行脚本的时候，跟主进程没关系，shell会启另一个进程执行。所以说越简单越好，越简单Bug越少越稳定。
  
  
- 用户用浏览器构建任务并提交任务，WebServer与MasterServer使用TCP连接，可以在WebServer上加个TCP主键，(比如说前面有个请求过来时，Web调TCP主键Client，
+用户用浏览器构建任务并提交任务，WebServer与MasterServer使用TCP连接，可以在WebServer上加个TCP主键，(比如说前面有个请求过来时，Web调TCP主键Client，
 用Client去调用MasterServer。)Web天生支持http协议，要是换协议就换协议被找个TCP的来，其实本质上都是TCP协议只不过大家封装上层协议用起来比较简单，但是
 Master上面已经使用的是TCP协议，要想使用http协议也行，使用http协议是Client到Web使用，我们不想在Master上加http协议了，所以要求Web上加TCP模块还是比较
 合适的，如在Master上加http只为了跟Web通讯不太合适，所以在Web上TCP因为跟其它子系统通讯的话，其它子系统都支持TCP所以就这么用了。
@@ -78,3 +78,7 @@ ZeroMQ是一种基于消息队列的多线程网络库，提供跨越多种传�
 　　pip install zerorpc
 
 
+
+WEB Server设计Restful API接口，使用json交互数据：
+
+Restful它主要用于客户端和服务器交互，基于这个风格设计的软件可以更简洁。
