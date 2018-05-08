@@ -17,11 +17,6 @@ Agent设计：
 
 　　但agent替你执行脚本的时候，跟主进程没关系，shell会启另一个进程执行。所以说越简单越好，越简单Bug越少越稳定。
  
- 
-用户用浏览器构建任务并提交任务，WebServer与MasterServer使用TCP连接，可以在WebServer上加个TCP主键，(比如说前面有个请求过来时，Web调TCP主键Client，
-用Client去调用MasterServer。)Web天生支持http协议，要是换协议就换协议被找个TCP的来，其实本质上都是TCP协议只不过大家封装上层协议用起来比较简单，但是
-Master上面已经使用的是TCP协议，要想使用http协议也行，使用http协议是Client到Web使用，我们不想在Master上加http协议了，所以要求Web上加TCP模块还是比较
-合适的，如在Master上加http只为了跟Web通讯不太合适，所以在Web上TCP因为跟其它子系统通讯的话，其它子系统都支持TCP所以就这么用了。
 
 
 
@@ -37,7 +32,18 @@ Agent和Master之间是要通信的，底层都得通过Socket实现的，但Soc
 无Agent，被控节点不需要安装或运行特殊的软件，列如通过ssh。这其实也是有Agent，不过Agent就是通过ssh，不是自己写的程序。
 通用、简单、易实现。但管理不善，容易出安全问题。
 并行效率不高，多节点的时候，尤其ssh都得Master自己挨个连，很累的
+ 并行：它是一种一次可执行多个指令，目的是提高效率。
+ 并发：是指同一时间段中有很多程序处于运行，且都在一个节点上。
+ 串行：串行数据是指传输过程中各数据位按顺序进行传输的数据。
 ssh执行要和Master之间通信的，这是它一个弱点，但是简单、方便、好执行。
+
+
+
+用户用浏览器构建任务并提交任务，WebServer与MasterServer使用TCP连接，可以在WebServer上加个TCP主键，(比如说前面有个请求过来时，Web调TCP主键Client，
+用Client去调用MasterServer。)Web天生支持http协议，要是换协议就换协议被找个TCP的来，其实本质上都是TCP协议只不过大家封装上层协议用起来比较简单，但是
+Master上面已经使用的是TCP协议，要想使用http协议也行，使用http协议是Client到Web使用，我们不想在Master上加http协议了，所以要求Web上加TCP模块还是比较
+合适的，如在Master上加http只为了跟Web通讯不太合适，所以在Web上TCP因为跟其它子系统通讯的话，其它子系统都支持TCP所以就这么用了。
+
 
 
 Master和Agent之间采用RPC通信，使用zerorpc模块，它基于ZeroMQ和MessagePack之上，不但实现网络通信，还搞定了序列化反序列化：
