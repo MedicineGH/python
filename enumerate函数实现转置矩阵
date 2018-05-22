@@ -97,4 +97,4 @@ for i in range(length):
         
 print("Same numbers = {1}, Counter = {0}".format(len(samenums),samenums))
 print("Different numbers = {1}, Counter = {0}".format(len(diffnums),diffnums))
-print(list(zip(states,nums)))阿萨德发达省份
+print(list(zip(states,nums)))
