@@ -1,0 +1,25 @@
+
+def count(rtc,dct={}):
+
+    with open(rtc) as f:
+        res = f.readlines()
+        # print(res)
+
+    for line in res:
+        ret = line.split()
+        # print(ret[0])
+        if ret[0] not in dct:
+            dct[ret[0]] = 1
+        else:
+            dct[ret[0]] += 1
+    # print(dct.items())
+
+    dict_v = []
+    for k,v in dct.items():
+        dict_v.append((v,k))
+
+    return dict_v
+
+
+print(count(r'f:\access.log'))
+
