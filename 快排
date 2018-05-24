@@ -1,0 +1,26 @@
+def quicksort(nums):
+    if len(nums) <= 1:
+        return nums
+
+    # 左子数组
+    less = [] #2,1,4
+    # 右子数组
+    greater = [] #7,8,9,11
+    # 基准数
+    base = nums.pop(0) #5,2
+
+    # 对原数组进行划分
+    for x in nums: #2
+        if x < base:
+            less.append(x)
+        else:
+            greater.append(x)
+
+    # 递归调用
+    return quicksort(less) + [base] + quicksort(greater)
+
+def main():
+    nums = [5, 2, 7, 1, 8, 4, 9, 11]
+    print(quicksort(nums))
+
+main()
