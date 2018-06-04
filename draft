@@ -88,6 +88,30 @@ Redis三大特点：
   
   接口(API)
     接口就是提供的方法，能让对方访问，调用，操作的都可以称为接口。
+    
+    
+  遇到的问题：
+
+　　1.在写Message模块中测试时，Client连接不上Server，最终通过排查发现使用netifaces获取
+    IP地址时出现异常返回的是IP对象，最终需要的str(ip)解决问题。
+
+　　2.在使用zerorpc的clinet请求时,server端会出现以下异常
+
+ 　　zerorpc。通道多路复用器在recv上忽略错误
+
+　　解决方法是：
+
+　　检查代码逻辑并确认代码内的数据对象类型都没有问题。
+
+　　pip uninstall msgpack-python
+
+　　# 卸载messagepack在重装zerorpc
+
+　　pip install zerorpc
+  
+  
+  最终用户用浏览器构建任务并提交任务，Web调用一个API，这个API内部就相当于把任务通过TCP协议加到Master上Master
+  把任务指派给谁，派给Agent1、2执行之后分别返回结果，先到Master交互给Web再给client。
   
 
 CMDB资产管理
