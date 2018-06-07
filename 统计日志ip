@@ -23,4 +23,3 @@ def count(rtc,dct={}):
 
 print(count(r'f:\access.log'))
 
-
