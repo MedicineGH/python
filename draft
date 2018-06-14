@@ -280,6 +280,10 @@ Proxies （代理类模块）。此类模块是Nginx的HTTP Upstream之类的模
 Python的第三方模块：
     BeautifulSoup：用于解析html代码，方便提取所需内容
     xlwt:用于将数据写入到excel文件
+    pymsql是Python中操作MySQL的模块，其使用方法和MySQLdb几乎相同。
+    SQLAlchemy是Python SQL工具包和对象关系映射器，为开发人员提供了SQL的全部功能和灵活性。它提供了一整套企业级持久性模式，专为高效和高性能的
+    数据库访问而设计。
+    
     
 消息队列：
     “消息队列”是在消息的传输过程中保存消息的容器。
